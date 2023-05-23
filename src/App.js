@@ -1,25 +1,59 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
+import {Container, Row, Col,Button,Form, Card} from 'react-bootstrap'
+import Forms from './Components/Forms';
 import './App.css';
+import {v4 as uuidv4} from 'uuid';
+import Cards from './Components/Cards';
+import CardContent from './Components/CardContent';
 
-function App() {
+
+const App = () => {
+  const [applicants, newApplicant] = useState([
+    { name: "Abla", 
+      email: "email",
+      password: "",
+      gen: 12,
+      id:uuidv4 (),
+    },
+    { name: "James",
+      email: "email",
+      password: "", 
+      gen: 23,
+      id: uuidv4 (),
+    },
+    
+    { name: "Getty",
+      email: "email",
+      password: "",
+      gen: 26,
+      id:uuidv4 (),
+    },
+    
+  ]);
+
+  function addApplicant (applicant) {
+newApplicant([...applicants, applicant])
+  }
+    
+  
+    
+
+     
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  
+    <Container>
+      <Row>
+        <Col>
+        <Forms addApplicant = {addApplicant}/>
+        </Col>
+        
+        <Col>
+        <Cards applicants = { applicants }/>
+        </Col>
+      </Row>
+    </Container>
+  )    
+  
+}; 
 
 export default App;
